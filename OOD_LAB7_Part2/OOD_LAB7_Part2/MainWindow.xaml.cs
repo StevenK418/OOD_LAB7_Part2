@@ -42,5 +42,39 @@ namespace OOD_LAB7_Part2
             //Assign the result set as data source for the data grid.
             Ex1lbDisplay.ItemsSource = query.ToList();
         }
+
+        private void Ex2Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Query Db for all customers in Italy
+            var query = from c in db.Customers
+                where c.Country.Equals("Italy")
+                select new
+                {
+                    Orders = c.Orders,
+                    CustomerDemographics = c.CustomerDemographics,
+                    CustomerID = c.CustomerID,
+                    CompanyName = c.CompanyName,
+                    ContactName = c.ContactName
+                };
+
+            //Assign the result set as data source for the data grid.
+            Ex2lbDisplay.ItemsSource = query.ToList();
+
+        }
+
+        private void Ex3Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Query the db for all products that are available
+            var query = from p in db.Products
+                where p.UnitsInStock - p.UnitsOnOrder > 0
+                select new
+                {
+                    Product = p.ProductName,
+                    Available = p.UnitsInStock
+                };
+
+            //Assign the returned result as the data source for the datagrid
+            Ex3lbDisplay.ItemsSource = query.ToList();
+        }
     }
 }

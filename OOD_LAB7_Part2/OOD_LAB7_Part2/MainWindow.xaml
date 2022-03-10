@@ -18,7 +18,27 @@
                     <DataGrid Grid.Row="1" Name="Ex1lbDisplay"/>
                 </Grid>
             </TabItem>
-            </TabControl>
+            <TabItem Header="Ex2" Width="75">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Get Data" Width="100" Height="30" Name="Ex2Button" Click="Ex2Button_Click"/>
+                    <DataGrid Grid.Row="1" Name="Ex2lbDisplay"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Ex3" Width="75">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Get Data" Width="100" Height="30" Name="Ex3Button" Click="Ex3Button_Click"/>
+                    <DataGrid Grid.Row="1" Name="Ex3lbDisplay"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 
 </Window>
