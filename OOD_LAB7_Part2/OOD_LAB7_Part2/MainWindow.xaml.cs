@@ -157,16 +157,24 @@ namespace OOD_LAB7_Part2
              * using a join.
             */
             var query = (from o in db.Orders
-               join c in db.Customers on o.CustomerID equals c.CustomerID
-               group o by o.CustomerID into customerGroups
-               select new
-               {
-                   CustomerID = customerGroups.Key,
-                   numberOfOrders  = customerGroups.Count()
-               }).OrderByDescending(x=> x.numberOfOrders).Take(10);
-
-            //Assign the returned dataset as source for the datagrid
-            Ex8lbDisplay.ItemsSource = query.ToList();
+                join c in db.Customers on o.CustomerID equals c.CustomerID
+                group o by new
+                {
+                    o.CustomerID,
+                    c.CompanyName,
+                    o.CustomerID.Length
+                }
+                into customerGroups
+                select new
+                {
+                    CustomerID = customerGroups.Key.CustomerID,
+                    CompanyName = customerGroups.Key.CompanyName,
+                    NumberOfOrders = customerGroups.Count()
+                }
+                ).OrderByDescending(x => x.NumberOfOrders).Take(10);
+              
+                //Assign the returned dataset as source for the datagrid
+                Ex8lbDisplay.ItemsSource = query.ToList();
         }
     }
 }
