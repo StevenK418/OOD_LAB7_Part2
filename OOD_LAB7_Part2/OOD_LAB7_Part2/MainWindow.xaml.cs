@@ -176,5 +176,22 @@ namespace OOD_LAB7_Part2
                 //Assign the returned dataset as source for the datagrid
                 Ex8lbDisplay.ItemsSource = query.ToList();
         }
+
+        private void Ex9Button_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            * Query db for customer without orders
+            */
+            var query = (from c in db.Customers
+                where c.Orders.Count() == 0
+                select new
+                {
+                    CompanyName = c.CompanyName,
+                    NumberOfOrders = c.Orders.Count()
+                });
+
+            //Assign the returned dataset as source for the datagrid
+            Ex9lbDisplay.ItemsSource = query.ToList();
+        }
     }
 }
