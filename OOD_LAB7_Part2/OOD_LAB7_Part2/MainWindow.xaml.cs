@@ -148,21 +148,25 @@ namespace OOD_LAB7_Part2
 
             //Assign the returned dataset as source for the datagrid
             Ex7lbDisplay.ItemsSource = query.ToList();
+        }
 
-          
-             /*  var query = (from o in db.Orders
-                join c in db.Customers on o.CustomerID equals c.CustomerID
-                group c by o.CustomerID
-                into customerGroups
-                select new
-                {
-                    CustomerID = customerGroups.Key,
-                    numberOfOrders  = customerGroups.Count()
-                }).OrderByDescending(x=> x.CustomerID).Distinct().Take(10);
+        private void Ex8Button_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            * Query db for Top 10 customers grouped by number of orders
+             * using a join.
+            */
+            var query = (from o in db.Orders
+               join c in db.Customers on o.CustomerID equals c.CustomerID
+               group o by o.CustomerID into customerGroups
+               select new
+               {
+                   CustomerID = customerGroups.Key,
+                   numberOfOrders  = customerGroups.Count()
+               }).OrderByDescending(x=> x.numberOfOrders).Take(10);
 
-            Ex7lbDisplay.ItemsSource = query.ToList();
-
-             */
+            //Assign the returned dataset as source for the datagrid
+            Ex8lbDisplay.ItemsSource = query.ToList();
         }
     }
 }
