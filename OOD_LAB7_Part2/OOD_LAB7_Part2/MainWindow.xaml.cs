@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,6 +105,27 @@ namespace OOD_LAB7_Part2
 
             //Assign the sum of all freight costs for all orders as text for the text block
             Ex5lbDisplay.Text = string.Format("The total value of freight for all orders is {0:C}", query.Sum());
+        }
+
+        private void Ex6Button_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+             * Query the db for Products and Categories in order of category name with the
+             * highest priced product in each category at the top of the list
+             */
+            var query = from p in db.Products
+                join c in db.Categories on p.Category.CategoryID equals c.CategoryID
+                orderby c.CategoryName, p.UnitPrice descending 
+                select new
+                {
+                    CategoryID = c.CategoryID,
+                    CategoryName = c.CategoryName,
+                    ProductName = p.ProductName,
+                    UnitPrice = p.UnitPrice
+                };
+
+            //Assign the returned dataset as source for the datagrid
+            Ex6lbDisplay.ItemsSource = query.ToList();
         }
     }
 }
