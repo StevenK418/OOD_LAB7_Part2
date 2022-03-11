@@ -76,5 +76,24 @@ namespace OOD_LAB7_Part2
             //Assign the returned result as the data source for the datagrid
             Ex3lbDisplay.ItemsSource = query.ToList();
         }
+
+        private void Ex4Button_Click(object sender, RoutedEventArgs e)
+        { 
+            
+            //Query the db for all discounted products
+            var query = from o in db.Order_Details
+                       join p in db.Products on o.ProductID equals p.ProductID
+                       where o.Discount > 0
+                       orderby o.Product.ProductName
+                       select new
+                        {
+                            ProductName = p.ProductName,
+                            DiscountGiven = o.Discount,
+                            OrderID = o.OrderID
+                        };
+
+            //Assign the returned result as the data source for the datagrid
+            Ex4lbDisplay.ItemsSource = query.ToList();
+        }
     }
 }
