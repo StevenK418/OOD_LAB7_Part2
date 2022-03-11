@@ -95,5 +95,15 @@ namespace OOD_LAB7_Part2
             //Assign the returned result as the data source for the datagrid
             Ex4lbDisplay.ItemsSource = query.ToList();
         }
+
+        private void Ex5Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Query database for all orders
+            var query = from o in db.Orders
+                select o.Freight;
+
+            //Assign the sum of all freight costs for all orders as text for the text block
+            Ex5lbDisplay.Text = string.Format("The total value of freight for all orders is {0:C}", query.Sum());
+        }
     }
 }

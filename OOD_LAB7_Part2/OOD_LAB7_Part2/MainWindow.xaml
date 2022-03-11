@@ -48,6 +48,16 @@
                     <DataGrid Grid.Row="1" Name="Ex4lbDisplay"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Ex5" Width="75">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="8*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Content="Get Data" Width="100" Height="30" Name="Ex5Button" Click="Ex5Button_Click"/>
+                    <TextBlock Grid.Row="1" Name="Ex5lbDisplay"/>
+                </Grid>
+            </TabItem>
         </TabControl>
     </Grid>
 
